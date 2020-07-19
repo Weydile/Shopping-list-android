@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Список покупок</string>
+    <string name="type_a_new_category_name">Введите имя новой категории</string>
+    <string name="what_you_want_to_buy">Что вы хотите купить?</string>
+    <string name="price">Цена</string>
+    <string name="value">Кол-во</string>
+    <string name="total_cost">Стоимость</string>
+    <string name="type_something">Напишите что-нибудь!</string>
+    <string name="categories">Категории</string>
+    <string name="delete_all_selected_goods">Удалить все выбранные товары?</string>
+    <string name="select_all">Выбрать всё</string>
+</resources>
