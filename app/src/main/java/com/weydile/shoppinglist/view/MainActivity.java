@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -25,7 +26,7 @@ import com.weydile.shoppinglist.presenter.Presenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements Presenter.Activity {
+public class MainActivity extends AppCompatActivity implements Presenter.Activity, GoodsAdapter.Activity {
 
     private ArrayList<Category> categories;
     private ArrayList<Goods> goods;
@@ -107,10 +108,12 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
         }
     }
 
+    @Override
     public void showDeleteGoodsButton(){
         optionsMenu.findItem(R.id.delete_all_selected_goods).setVisible(true);
     }
 
+    @Override
     public void hideDeleteGoodsButton(){
         optionsMenu.findItem(R.id.delete_all_selected_goods).setVisible(false);
     }
@@ -167,6 +170,15 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
     }
 
     @Override
+    public void updateCost() {
+        float totalCost = 0;
+        for (int i = 0; i < goods.size(); i++) {
+            totalCost += Float.parseFloat(goods.get(i).getCost());
+        }
+        ((TextView) findViewById(R.id.total_cost)).setText(String.valueOf(totalCost));
+    }
+
+    @Override
     public void onBackPressed() {
         if (!inputIsHide) {
             hideInputField();
@@ -199,12 +211,15 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
         getSupportActionBar().setTitle(R.string.categories);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        findViewById(R.id.total_cost_layout).setVisibility(View.GONE);
+
         isGoods = false;
         updateView();
     }
 
     @Override
     public void showGoods(int categoryId, String categoryName) {
+        findViewById(R.id.total_cost_layout).setVisibility(View.VISIBLE);
         ((RecyclerView) findViewById(R.id.main_list))
                 .setAdapter(goodsAdapter);
         ((TextInputLayout) findViewById(R.id.input_name))
@@ -223,6 +238,7 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
         }else{
             optionsMenu.findItem(R.id.select_all_goods).setVisible(false);
         }
+        updateCost();
         updateView();
     }
 }

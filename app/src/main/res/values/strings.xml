@@ -4,7 +4,7 @@
     <string name="what_you_want_to_buy">What you want to buy?</string>
     <string name="price">Price</string>
     <string name="value">Value</string>
-    <string name="total_cost">Cost:</string>
+    <string name="cost">Cost:</string>
     <string name="type_something">Type something!</string>
     <string name="categories">Categories</string>
     <string name="delete_all_selected_goods">Delete all selected goods</string>
@@ -12,4 +12,5 @@
     <string name="do_you_really_want_delete_all_selected_goods">Do you really want delete all selected goods?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="total_cost">Total cost:</string>
 </resources>

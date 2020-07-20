@@ -26,12 +26,14 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
     private ArrayList<Goods> goods;
     private Context context;
     private Presenter presenter;
+    private Activity activity;
 
 
     public GoodsAdapter(ArrayList<Goods> goods, Context context, Presenter presenter) {
         this.goods = goods;
         this.context = context;
         this.presenter = presenter;
+        activity = (Activity) context;
     }
 
     @NonNull
@@ -46,6 +48,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             goods.get(position).setChecked(isChecked);
             presenter.updateGoods(goods.get(position));
+            activity.updateCost();
             if (holder.checkBox.isChecked()) {
                 holder.uncheckedGoods.setVisibility(View.GONE);
                 holder.checkedGoods.setVisibility(View.VISIBLE);
@@ -53,31 +56,31 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
             } else {
                 holder.checkedGoods.setVisibility(View.GONE);
                 holder.uncheckedGoods.setVisibility(View.VISIBLE);
-                if (goods.get(position).getPrice().equals("0")) {
-                    holder.goodsPrice.setText("");
-                } else {
-                    holder.goodsPrice.setText(goods.get(position).getPrice());
-                }
-                if (goods.get(position).getValue().equals("0")) {
-                    holder.goodsValue.setText("");
-                } else {
-                    holder.goodsValue.setText(goods.get(position).getValue());
-                }
             }
-
             int checkedGoods = 0;
             for (int i = 0; i < goods.size(); i++) {
                 if (goods.get(i).isChecked()){
                     checkedGoods++;
                 }
                 if (checkedGoods!=0){
-                    ((MainActivity)context).showDeleteGoodsButton();
+                    activity.showDeleteGoodsButton();
                 }else{
-                    ((MainActivity)context).hideDeleteGoodsButton();
+                    activity.hideDeleteGoodsButton();
                 }
             }
         });
-        holder.checkBox.setChecked(goods.get(position).isChecked());
+
+        if (goods.get(position).getPrice().equals("0")) {
+            holder.goodsPrice.setText("");
+        } else {
+            holder.goodsPrice.setText(goods.get(position).getPrice());
+        }
+        if (goods.get(position).getValue().equals("0")) {
+            holder.goodsValue.setText("");
+        } else {
+            holder.goodsValue.setText(goods.get(position).getValue());
+        }
+
         holder.goodsValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -96,6 +99,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
                 } else {
                     goods.get(position).setValue(s.toString());
                 }
+                activity.updateCost();
                 presenter.updateGoods(goods.get(position));
             }
         });
@@ -117,11 +121,19 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
                 } else {
                     goods.get(position).setPrice(s.toString());
                 }
+                activity.updateCost();
                 presenter.updateGoods(goods.get(position));
             }
         });
         holder.goodsName.setText(goods.get(position).getName());
+        holder.checkBox.setChecked(goods.get(position).isChecked());
 
+    }
+
+    public interface Activity{
+        void updateCost();
+        void showDeleteGoodsButton();
+        void hideDeleteGoodsButton();
     }
 
     @Override
@@ -145,7 +157,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
             checkBox = itemView.findViewById(R.id.goods_check_box);
             goodsPrice = itemView.findViewById(R.id.price_edit_text);
             goodsValue = itemView.findViewById(R.id.value_edit_text);
-            goodsCost = itemView.findViewById(R.id.cost);
+            goodsCost = itemView.findViewById(R.id.cost_text_view);
             uncheckedGoods = itemView.findViewById(R.id.unchecked_goods);
             checkedGoods = itemView.findViewById(R.id.checked_goods);
         }

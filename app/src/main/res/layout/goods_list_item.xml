@@ -103,24 +103,24 @@
                 app:layout_constraintTop_toTopOf="@+id/goods_check_box">
 
                 <TextView
-                    android:id="@+id/cost"
+                    android:id="@+id/cost_text_view"
                     android:layout_width="50dp"
                     android:layout_height="19dp"
                     android:layout_marginEnd="8dp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/total_cost"
+                    app:layout_constraintBottom_toBottomOf="@+id/cost"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/total_cost" />
+                    app:layout_constraintTop_toTopOf="@+id/cost" />
 
                 <TextView
-                    android:id="@+id/total_cost"
+                    android:id="@+id/cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="@string/total_cost"
+                    android:text="@string/cost"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/cost"
+                    app:layout_constraintEnd_toStartOf="@+id/cost_text_view"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     <string name="what_you_want_to_buy">Что вы хотите купить?</string>
     <string name="price">Цена</string>
     <string name="value">Кол-во</string>
-    <string name="total_cost">Стоимость</string>
+    <string name="cost">Стоимость</string>
     <string name="type_something">Напишите что-нибудь!</string>
     <string name="categories">Категории</string>
     <string name="delete_all_selected_goods">Удалить все выбранные товары?</string>
@@ -13,4 +13,5 @@
     <string name="do_you_really_want_delete_all_selected_goods">Вы действительно хотите удалить все выбранные товары?</string>
     <string name="delete">Удалить</string>
     <string name="cancel">Отмена</string>
+    <string name="total_cost">Итоговая стоимость:</string>
 </resources>
