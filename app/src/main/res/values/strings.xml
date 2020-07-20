@@ -9,4 +9,7 @@
     <string name="categories">Categories</string>
     <string name="delete_all_selected_goods">Delete all selected goods</string>
     <string name="select_all">Select all</string>
+    <string name="do_you_really_want_delete_all_selected_goods">Do you really want delete all selected goods?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>

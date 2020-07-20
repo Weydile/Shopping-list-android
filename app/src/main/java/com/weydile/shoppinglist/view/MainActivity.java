@@ -3,6 +3,7 @@ package com.weydile.shoppinglist.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
                 onBackPressed();
                 return true;
             case R.id.delete_all_selected_goods:
-                deleteAllSelectedGoods();
+                DialogFragment dialogFragment = new DeleteAllDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(),"DeleteAllSelectedGoods");
                 return true;
             case R.id.select_all_goods:
                 selectAllGoods();
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
         optionsMenu.findItem(R.id.delete_all_selected_goods).setVisible(false);
     }
 
-    private void deleteAllSelectedGoods(){
+    public void deleteAllSelectedGoods(){
         for (int i = 0; i < goods.size(); i++) {
             if (goods.get(i).isChecked()){
                 presenter.deleteGoods(goods.get(i));
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
         hideDeleteGoodsButton();
     }
 
-    private void selectAllGoods(){
+    public void selectAllGoods(){
         for (int i = 0; i < goods.size(); i++) {
             goods.get(i).setChecked(true);
         }

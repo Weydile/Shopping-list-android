@@ -6,14 +6,14 @@
         android:visible="false"
         android:id="@+id/select_all_goods"
         android:icon="@drawable/baseline_done_all_white_48"
-        android:title="@string/delete_all_selected_goods"
+        android:title="@string/select_all"
         app:showAsAction="always" />
 
     <item
         android:visible="false"
         android:id="@+id/delete_all_selected_goods"
         android:icon="@drawable/baseline_delete_white_48"
-        android:title="@string/select_all"
+        android:title="@string/delete_all_selected_goods"
         app:showAsAction="ifRoom" />
 
 </menu>

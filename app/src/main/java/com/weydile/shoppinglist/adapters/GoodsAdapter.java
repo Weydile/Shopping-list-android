@@ -43,8 +43,6 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
 
     @Override
     public void onBindViewHolder(@NonNull GoodsVH holder, int position) {
-        holder.checkBox.setChecked(goods.get(position).isChecked());
-        holder.goodsName.setText(goods.get(position).getName());
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             goods.get(position).setChecked(isChecked);
             presenter.updateGoods(goods.get(position));
@@ -66,6 +64,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
                     holder.goodsValue.setText(goods.get(position).getValue());
                 }
             }
+
             int checkedGoods = 0;
             for (int i = 0; i < goods.size(); i++) {
                 if (goods.get(i).isChecked()){
@@ -78,6 +77,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
                 }
             }
         });
+        holder.checkBox.setChecked(goods.get(position).isChecked());
         holder.goodsValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,6 +120,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
                 presenter.updateGoods(goods.get(position));
             }
         });
+        holder.goodsName.setText(goods.get(position).getName());
 
     }
 
