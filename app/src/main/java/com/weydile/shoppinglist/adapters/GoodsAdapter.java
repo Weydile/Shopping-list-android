@@ -59,12 +59,12 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
             }
             int checkedGoods = 0;
             for (int i = 0; i < goods.size(); i++) {
-                if (goods.get(i).isChecked()){
+                if (goods.get(i).isChecked()) {
                     checkedGoods++;
                 }
-                if (checkedGoods!=0){
+                if (checkedGoods != 0) {
                     activity.showDeleteGoodsButton();
-                }else{
+                } else {
                     activity.hideDeleteGoodsButton();
                 }
             }
@@ -94,7 +94,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().equals("")) {
+                if (s.toString().equals("") || s.toString().equals(".")) {
                     goods.get(position).setValue("0");
                 } else {
                     goods.get(position).setValue(s.toString());
@@ -116,7 +116,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().equals("")) {
+                if (s.toString().equals("") || s.toString().equals(".")) {
                     goods.get(position).setPrice("0");
                 } else {
                     goods.get(position).setPrice(s.toString());
@@ -130,9 +130,11 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsVH> {
 
     }
 
-    public interface Activity{
+    public interface Activity {
         void updateCost();
+
         void showDeleteGoodsButton();
+
         void hideDeleteGoodsButton();
     }
 

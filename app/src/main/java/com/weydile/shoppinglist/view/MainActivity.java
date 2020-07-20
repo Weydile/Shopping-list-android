@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
         if (!inputIsHide) {
             hideInputField();
         } else if (isGoods) {
+            hideDeleteGoodsButton();
             optionsMenu.findItem(R.id.select_all_goods).setVisible(false);
             showCategories();
         } else {
