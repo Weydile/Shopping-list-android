@@ -2,7 +2,6 @@ package com.weydile.shoppinglist.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -81,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements Presenter.Activit
                         }
                     }
                 });
+        findViewById(R.id.main_list).setOnTouchListener((v, event) -> {
+            hideInputField();
+            return false;
+        });
     }
 
     @Override
